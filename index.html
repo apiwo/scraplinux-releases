@@ -24,53 +24,30 @@
   </header>
 
   <section id="latest">
-    <h2>latest - 2026.09.01</h2>
-    <p class="status-line">Published 2026-09-02. GPL-3.0-or-later on ScrapLinux's own code.
-    <strong>s66</strong> (s6 + Obarun's 66 as PID1) is the new default init, replacing busybox -
-    <code>busybox</code> and <code>openrc</code> remain fully supported flavors. Full multilib/32-bit
-    support and Steam. <code>poweroff</code> and <code>reboot</code> now actually complete on s66,
-    <code>udevadm</code> works again so wifi drivers load at boot, and every tarball ships
-    <code>libcrypt.so.2</code> and <code>libpam.so.0</code> - the gap previously disclosed against the
-    <code>openrc</code> tarball is closed. See the
-    <a href="https://github.com/apiwo/scraplinux/releases/tag/v2026.09.01">full release notes</a>.</p>
-
-    <h3>Live ISO</h3>
-    <p>Boot-tested end to end in QEMU - a real, install-by-hand live environment (format/extract/chroot
-    yourself, same as the manual tarball path below), not a guided installer. Includes a real
-    build toolchain. Login: <code>root</code> or <code>live</code>, password <code>scraps</code> either way.</p>
+    <h2>latest - 2026.10.06</h2>
+    <p class="status-line">Published 2026-10-06. dinit is the init and every other init is gone.
+    The boot runs as parallel dinit services, about 3.3 seconds from firmware to login in QEMU.
+    Wireless is iwd with dhcpcd. <code>scraps update</code> moves an existing install to dinit and
+    keeps its enabled services. See the
+    <a href="https://github.com/apiwo/scraplinux/releases/tag/v2026.10.06">full release notes</a>.</p>
+    <h3>Tarball</h3>
+    <p>The base system with dinit, iwd, dhcpcd and a full LLVM toolchain. Unpack onto a prepared
+    root, run <code>scraps-strap</code>, then <code>scraps add</code> scraplinux-base, a kernel and a
+    bootloader. There is no installer.</p>
     <ul>
-      <li><a href="https://github.com/apiwo/scraplinux/releases/download/v2026.09.01/scraplinux-live.iso">scraplinux-live.iso</a> (959 MiB) - <a href="https://github.com/apiwo/scraplinux/releases/download/v2026.09.01/scraplinux-live.iso.sha256">sha256</a></li>
+      <li><a href="https://github.com/apiwo/scraplinux/releases/download/v2026.10.06/scraplinux-tarball.tar.xz">scraplinux-tarball.tar.xz</a> (202 MiB) - <a href="https://github.com/apiwo/scraplinux/releases/download/v2026.10.06/scraplinux-tarball.tar.xz.sha256">sha256</a></li>
     </ul>
-
-    <h3>Tarballs</h3>
-
-    <h4>Minimal tarballs</h4>
-    <p>The same base system three times over, differing only in what runs as PID 1.
-    Unpack onto a prepared root, then <code>scraps add</code> a kernel and a
-    bootloader - there is no installer.</p>
-    <ul>
-      <li><a href="https://github.com/apiwo/scraplinux/releases/download/v2026.09.01/scraplinux-s66-tarball.tar.xz">s66 tarball</a> - s6 with Obarun's 66 on top, the default. Supervised services, dependency-ordered boot. <a href="https://github.com/apiwo/scraplinux/releases/download/v2026.09.01/scraplinux-s66-tarball.tar.xz.sha256">sha256</a></li>
-      <li><a href="https://github.com/apiwo/scraplinux/releases/download/v2026.09.01/scraplinux-busybox-tarball.tar.xz">busybox tarball</a> - busybox init driven by <code>/etc/inittab</code> and <code>/etc/rc.boot</code>. The smallest and most predictable of the three. (Called the "def" tarball before this release.) <a href="https://github.com/apiwo/scraplinux/releases/download/v2026.09.01/scraplinux-busybox-tarball.tar.xz.sha256">sha256</a></li>
-      <li><a href="https://github.com/apiwo/scraplinux/releases/download/v2026.09.01/scraplinux-openrc-tarball.tar.xz">openrc tarball</a> - OpenRC, if you want runlevels and <code>rc-service</code> rather than a supervision tree. <a href="https://github.com/apiwo/scraplinux/releases/download/v2026.09.01/scraplinux-openrc-tarball.tar.xz.sha256">sha256</a></li>
-    </ul>
-
-    <h4>i3wl tarball (s66)</h4>
-    <p>The s66 base with <a href="https://ports-scraplinux.apiwow.net/ALL/base/i3wl/recipe">i3wl</a>
-    already installed - a dwl fork with i3-style binary-tree tiling, a
-    StatusNotifierItem tray and a matching bar, started with <code>i3wl</code>
-    or picked from a display manager's session list. Not published yet: the
-    port builds, but its binary package is not in the mirror, so the tarball
-    would be an s66 tarball under a different name. It lands once that package
-    is built.</p>
+    <p>No live ISO for this release. The 2026.09.01 one still boots the old init.</p>
     <p><a href="https://scraplinux-docs.apiwow.net/install.html">Install guide →</a></p>
   </section>
-
   <section>
     <h2>history</h2>
-    <p>This is the first tracked release. <a href="https://github.com/apiwo/scraplinux/releases">Every
-    release, oldest to newest →</a></p>
+    <p><a href="https://github.com/apiwo/scraplinux/releases/tag/v2026.09.01">2026.09.01</a> - the
+    s66, busybox and OpenRC tarballs and the live ISO. Those inits are retired; a system installed
+    from them moves to dinit with <code>scraps add scraplinux-base</code>. Its checksum files were
+    never uploaded.</p>
+    <p><a href="https://github.com/apiwo/scraplinux/releases">Every release, oldest to newest →</a></p>
   </section>
-
   <footer>
     ScrapLinux's own code is <a href="https://github.com/apiwo/scraplinux/blob/main/LICENSE">GPLv3</a>. Packaged software keeps its own license.
   </footer>
